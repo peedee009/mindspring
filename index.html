@@ -7,81 +7,134 @@
 <title>MindSpring | From Confusion to Understanding</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7f5;color:#20352e}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7f5;color:#263a32}
 header{background:#123d32;color:white;padding:22px 18px}
 header h1{margin:0;font-size:27px}
 header p{margin:7px 0 0;color:#d3e8df}
 main{max-width:650px;margin:auto;padding:22px 16px}
-.card{background:white;border-radius:16px;padding:21px;margin:15px 0;box-shadow:0 3px 14px #163d3210}
-h2{color:#174c3c}
-p{line-height:1.6}
-button{border:0;border-radius:9px;padding:13px 17px;background:#17634b;color:white;font-size:15px;margin:6px 4px 6px 0;cursor:pointer}
+.card{background:white;border-radius:16px;padding:21px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.05)}
+h2,h3{color:#174c3c}
+p{line-height:1.65}
+button{border:0;border-radius:9px;padding:13px 17px;background:#174c3c;color:white;font-size:15px;cursor:pointer;margin:7px 0}
 button.secondary{background:#e6f1ec;color:#174c3c}
+.option{display:block;width:100%;text-align:left;background:#e6f1ec;color:#174c3c;margin:10px 0}
 button:disabled{opacity:.5}
-.option{display:block;width:100%;text-align:left;background:#edf4f0;color:#20352e;margin:9px 0}
 .small{font-size:13px;color:#66776e}
 #content{min-height:300px}
-footer{text-align:center;padding:20px;color:#718078;font-size:12px}
+.lesson{background:#f0f6f2;padding:14px;border-radius:10px;margin:14px 0}
+footer{text-align:center;padding:20px;color:#718078;font-size:13px}
 </style>
 </head>
 <body>
+
 <header>
 <h1>MindSpring 🌱</h1>
 <p>From confusion to understanding.</p>
 </header>
+
 <main>
 <div id="content">
 <div class="card">
 <p class="small">YOUR LEARNING COMPANION</p>
 <h2>Let's find the missing piece.</h2>
-<p>Sometimes, understanding a topic isn't about reading more. It's about discovering the concept you haven't quite understood yet.</p>
-<p>MindSpring helps you explore what you know, understand what is missing and practise independently.</p>
+<p>Sometimes, understanding a topic isn't about reading more. It's about finding the idea that hasn't clicked yet.</p>
+<p>MindSpring helps you explore what you know, understand difficult concepts and strengthen your learning.</p>
 <button onclick="showTopics()">Start learning</button>
 </div>
+
 <div class="card">
 <h3>How MindSpring works</h3>
-<p>01 — Discover: Explore what you already know.</p>
-<p>02 — Guide: Work through the difficult concept.</p>
-<p>03 — Strengthen: Practise what you've learnt.</p>
+<p>01 - Discover: Explore what you already know.</p>
+<p>02 - Guide: Work through the difficult concept.</p>
+<p>03 - Strengthen: Practise what you've learnt.</p>
 </div>
 </div>
 </main>
+
 <footer>MindSpring Prototype · Learning through understanding</footer>
+
 <script>
 const topics = {
 "Linear Equations": {
 question:"What does x + 3 = 7 mean?",
-options:["A number plus 3 equals 7","A number multiplied by 3 equals 7","3 plus 7 equals x"],
+options:[
+"A number plus 3 equals 7",
+"A number multiplied by 3 equals 7",
+"3 plus 7 equals x"
+],
 correct:0,
-explain:"An equation is a mathematical statement showing that two expressions are equal. Here, x is an unknown number. We need to find the number that makes the statement true.",
+explain:[
+"An equation is a mathematical statement showing that two expressions are equal.",
+"The letter x represents an unknown number. Our task is to discover which number makes the statement true.",
+"For x + 3 = 7, we need a number that becomes 7 when we add 3 to it."
+],
+examples:[
+"Example 1: x + 2 = 5. Subtract 2 from both sides. Therefore, x = 3.",
+"Example 2: x + 4 = 9. Subtract 4 from both sides. Therefore, x = 5.",
+"Remember: whatever operation we perform on one side of an equation, we perform on the other side to keep both sides equal."
+],
 practice:"If x + 4 = 9, what is x?",
 answer:["4","5","6"],
 right:1,
-tip:"Subtract 4 from both sides: x = 9 − 4 = 5."
+tip:"Subtract 4 from both sides: x + 4 - 4 = 9 - 4. Therefore, x = 5. Check: 5 + 4 = 9. Both sides are equal."
 },
+
 "Photosynthesis": {
 question:"What do plants mainly use sunlight for?",
-options:["To make their own food","To absorb minerals from soil","To produce soil"],
+options:[
+"To make their own food",
+"To absorb minerals from soil",
+"To produce oxygen without water"
+],
 correct:0,
-explain:"Photosynthesis is the process by which green plants use light energy to make glucose from carbon dioxide and water. Chlorophyll helps capture the light energy.",
+explain:[
+"Photosynthesis is the process by which green plants make their own food.",
+"Plants use light energy, water and carbon dioxide to produce glucose. Oxygen is released during the process.",
+"Chlorophyll, the green pigment in plants, absorbs light energy needed for photosynthesis."
+],
+examples:[
+"Example 1: A plant receives sunlight and has access to water and carbon dioxide. It can carry out photosynthesis.",
+"Example 2: When a plant receives very little light, the rate of photosynthesis may decrease.",
+"Remember: sunlight supplies energy. Water and carbon dioxide are also needed."
+],
 practice:"Which gas do plants take in during photosynthesis?",
 answer:["Oxygen","Carbon dioxide","Nitrogen"],
 right:1,
-tip:"Plants take in carbon dioxide and use it with water and light to produce glucose and oxygen."
+tip:"Plants take in carbon dioxide from the air. They use it together with water and light energy to make glucose. Oxygen is released."
 },
+
 "Forces and Motion": {
 question:"What is a force?",
-options:["A push or a pull","A type of energy only","The speed of an object"],
+options:[
+"A push or a pull",
+"A type of energy only",
+"The speed of an object"
+],
 correct:0,
-explain:"A force is a push or pull that can change an object's motion or shape. Forces can make objects start moving, stop, speed up, slow down or change direction.",
-practice:"What happens when balanced forces act on a stationary object?",
-answer:["It must move","It remains stationary","It disappears"],
+explain:[
+"A force is a push or a pull acting on an object.",
+"A force can change an object's motion, direction or shape.",
+"Forces are measured in newtons (N)."
+],
+examples:[
+"Example 1: Pushing a stationary chair can make it move.",
+"Example 2: Applying a force to a moving ball can change its direction.",
+"Remember: the effect of a force depends on the forces acting together and the object's existing motion."
+],
+practice:"What happens to a stationary object when balanced forces act on it?",
+answer:[
+"It must begin moving",
+"It remains stationary",
+"It changes its direction"
+],
 right:1,
-tip:"Balanced forces have zero resultant force. A stationary object remains stationary when the forces acting on it are balanced."
+tip:"Balanced forces have a resultant force of zero. A stationary object therefore remains stationary."
 }
 };
+
 let selected="";
 let score=0;
+let diagnosticCorrect=false;
 
 function showTopics(){
 document.getElementById("content").innerHTML=`
@@ -92,9 +145,11 @@ ${Object.keys(topics).map(t=>`<button class="option" onclick="start('${t}')">${t
 <button class="secondary" onclick="home()">Back home</button>
 </div>`;
 }
+
 function start(topic){
 selected=topic;
 score=0;
+diagnosticCorrect=false;
 const t=topics[topic];
 document.getElementById("content").innerHTML=`
 <div class="card">
@@ -105,19 +160,23 @@ ${t.options.map((o,i)=>`<button class="option" onclick="diagnose(${i})">${o}</bu
 <p class="small">This is a learning check, not an exam.</p>
 </div>`;
 }
+
 function diagnose(choice){
 const t=topics[selected];
-const correct=choice===t.correct;
-score=correct?1:0;
+diagnosticCorrect=choice===t.correct;
+score=diagnosticCorrect?1:0;
 document.getElementById("content").innerHTML=`
 <div class="card">
 <p class="small">GUIDE · ${selected}</p>
-<h2>${correct?"Good start!":"Let's explore that idea."}</h2>
-<p>${correct?"You recognised the main idea. Let's strengthen your understanding.":"It's okay if you weren't sure. Let's build the idea together."}</p>
-<p>${t.explain}</p>
+<h2>${diagnosticCorrect?"Good start!":"Let's explore that idea."}</h2>
+<p>${diagnosticCorrect?"You recognised the main idea. Now let's deepen your understanding.":"It's okay if you weren't sure. This is an opportunity to learn."}</p>
+${t.explain.map(p=>`<p>${p}</p>`).join("")}
+<h3>Let's work through some examples</h3>
+${t.examples.map(e=>`<div class="lesson"><p>${e}</p></div>`).join("")}
 <button onclick="practice()">Continue to practice</button>
 </div>`;
 }
+
 function practice(){
 const t=topics[selected];
 document.getElementById("content").innerHTML=`
@@ -128,6 +187,7 @@ document.getElementById("content").innerHTML=`
 ${t.answer.map((a,i)=>`<button class="option" onclick="finish(${i})">${a}</button>`).join("")}
 </div>`;
 }
+
 function finish(choice){
 const t=topics[selected];
 const correct=choice===t.right;
@@ -136,13 +196,19 @@ document.getElementById("content").innerHTML=`
 <div class="card">
 <p class="small">YOUR LEARNING SUMMARY</p>
 <h2>${correct?"Well done!":"Keep building your understanding."}</h2>
-<p>${correct?"You answered the practice question correctly.":"Review the explanation and try another example when you're ready."}</p>
-<p>${t.tip}</p>
+<p>${correct?"You answered the practice question correctly.":"Let's review the correct reasoning."}</p>
+<div class="lesson">
+<p><strong>Practice question:</strong> ${t.practice}</p>
+<p><strong>Explanation:</strong> ${t.tip}</p>
+</div>
+<p><strong>Learning check:</strong> ${diagnosticCorrect?"Correct":"Needs review"}</p>
+<p><strong>Practice:</strong> ${correct?"Correct":"Needs review"}</p>
 <p><strong>Your result: ${score}/2</strong></p>
 <button onclick="showTopics()">Explore another topic</button>
 <button class="secondary" onclick="home()">Home</button>
 </div>`;
 }
+
 function home(){
 document.getElementById("content").innerHTML=`
 <div class="card">
@@ -154,4 +220,3 @@ document.getElementById("content").innerHTML=`
 </script>
 </body>
 </html>
-
