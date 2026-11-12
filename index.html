@@ -7,216 +7,423 @@
 <title>MindSpring | From Confusion to Understanding</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7f5;color:#263a32}
-header{background:#123d32;color:white;padding:22px 18px}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f7f4;color:#20352c}
+header{background:#123d32;color:white;padding:20px 18px}
 header h1{margin:0;font-size:27px}
-header p{margin:7px 0 0;color:#d3e8df}
-main{max-width:650px;margin:auto;padding:22px 16px}
-.card{background:white;border-radius:16px;padding:21px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.05)}
+header p{margin:6px 0 0;color:#d3e8df}
+main{max-width:720px;margin:auto;padding:20px 15px}
+.card{background:white;border-radius:16px;padding:21px;margin-bottom:16px;box-shadow:0 3px 12px #173d3210}
 h2,h3{color:#174c3c}
+h2{margin-top:8px}
 p{line-height:1.65}
-button{border:0;border-radius:9px;padding:13px 17px;background:#174c3c;color:white;font-size:15px;cursor:pointer;margin:7px 0}
+button{border:0;border-radius:10px;padding:13px 16px;background:#176b50;color:white;font-size:15px;font-weight:600;cursor:pointer;margin:5px 3px 5px 0}
 button.secondary{background:#e6f1ec;color:#174c3c}
-.option{display:block;width:100%;text-align:left;background:#e6f1ec;color:#174c3c;margin:10px 0}
+button.option{display:block;width:100%;text-align:left;background:#f0f6f2;color:#20352c;border:1px solid #dce9e1;margin:9px 0}
+button.option:active{background:#dcefe4}
 button:disabled{opacity:.5}
-.small{font-size:13px;color:#66776e}
+.small{font-size:13px;color:#718078}
+.tag{font-size:12px;font-weight:bold;letter-spacing:.6px;color:#247453}
+.lesson{background:#f0f6f2;padding:14px;border-radius:11px;margin:12px 0}
+.step{border-left:4px solid #3b9b70;padding:10px 13px;margin:13px 0;background:#f7faf8;border-radius:5px}
+.notice{background:#fff8e7;border-left:4px solid #d7a43b;padding:12px;border-radius:8px;margin:12px 0}
+.progress{height:7px;background:#e5eee8;border-radius:10px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;background:#27845e;width:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid button{margin:0;text-align:left;min-height:75px}
 #content{min-height:300px}
-.lesson{background:#f0f6f2;padding:14px;border-radius:10px;margin:14px 0}
-footer{text-align:center;padding:20px;color:#718078;font-size:13px}
+footer{text-align:center;padding:18px;color:#718078;font-size:12px}
+a{color:#176b50}
+@media(max-width:430px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <header>
 <h1>MindSpring 🌱</h1>
 <p>From confusion to understanding.</p>
 </header>
 
 <main>
-<div id="content">
-<div class="card">
-<p class="small">YOUR LEARNING COMPANION</p>
-<h2>Let's find the missing piece.</h2>
-<p>Sometimes, understanding a topic isn't about reading more. It's about finding the idea that hasn't clicked yet.</p>
-<p>MindSpring helps you explore what you know, understand difficult concepts and strengthen your learning.</p>
-<button onclick="showTopics()">Start learning</button>
-</div>
-
-<div class="card">
-<h3>How MindSpring works</h3>
-<p>01 - Discover: Explore what you already know.</p>
-<p>02 - Guide: Work through the difficult concept.</p>
-<p>03 - Strengthen: Practise what you've learnt.</p>
-</div>
-</div>
+<div id="content"></div>
 </main>
 
 <footer>MindSpring Prototype · Learning through understanding</footer>
 
 <script>
 const topics = {
-"Linear Equations": {
-question:"What does x + 3 = 7 mean?",
-options:[
-"A number plus 3 equals 7",
-"A number multiplied by 3 equals 7",
-"3 plus 7 equals x"
+"Linear Equations":{
+description:"Learn how unknown numbers work and how to solve equations step by step.",
+subtopics:[
+{
+name:"Variables, constants and coefficients",
+intro:"Before solving equations, let's understand the different parts of an algebraic expression.",
+lessons:[
+["What is a variable?","A variable is a letter or symbol that represents a number. For example, in x + 4, the letter x represents a number we may not know yet."],
+["What is a constant?","A constant is a number that does not change in the expression. In x + 4, the number 4 is the constant."],
+["What is a coefficient?","A coefficient is the number multiplying a variable. In 3x, the coefficient is 3. This means 3 × x."],
+["Let's put it together","In 5x + 7, x is the variable, 5 is the coefficient and 7 is the constant."]
 ],
-correct:0,
-explain:[
-"An equation is a mathematical statement showing that two expressions are equal.",
-"The letter x represents an unknown number. Our task is to discover which number makes the statement true.",
-"For x + 3 = 7, we need a number that becomes 7 when we add 3 to it."
-],
-examples:[
-"Example 1: x + 2 = 5. Subtract 2 from both sides. Therefore, x = 3.",
-"Example 2: x + 4 = 9. Subtract 4 from both sides. Therefore, x = 5.",
-"Remember: whatever operation we perform on one side of an equation, we perform on the other side to keep both sides equal."
-],
-practice:"If x + 4 = 9, what is x?",
-answer:["4","5","6"],
-right:1,
-tip:"Subtract 4 from both sides: x + 4 - 4 = 9 - 4. Therefore, x = 5. Check: 5 + 4 = 9. Both sides are equal."
+question:"In the expression 4x + 6, what is the coefficient?",
+answers:["4","6","x"],right:0,
+explain:"The coefficient is 4 because it multiplies the variable x."
 },
-
-"Photosynthesis": {
-question:"What do plants mainly use sunlight for?",
-options:[
-"To make their own food",
-"To absorb minerals from soil",
-"To produce oxygen without water"
+{
+name:"Understanding equations",
+intro:"An equation is a mathematical statement showing that two expressions are equal.",
+lessons:[
+["What does equality mean?","The equals sign (=) means that the value on the left is the same as the value on the right."],
+["What is an equation?","For example, 3 + 2 = 5 is an equation because both sides have the same value."],
+["What is an unknown?","In x + 3 = 7, x is the unknown number. We need to discover which number makes the statement true."],
+["Think about it","If x were 4, then 4 + 3 = 7. Both sides would be equal."]
 ],
-correct:0,
-explain:[
-"Photosynthesis is the process by which green plants make their own food.",
-"Plants use light energy, water and carbon dioxide to produce glucose. Oxygen is released during the process.",
-"Chlorophyll, the green pigment in plants, absorbs light energy needed for photosynthesis."
-],
-examples:[
-"Example 1: A plant receives sunlight and has access to water and carbon dioxide. It can carry out photosynthesis.",
-"Example 2: When a plant receives very little light, the rate of photosynthesis may decrease.",
-"Remember: sunlight supplies energy. Water and carbon dioxide are also needed."
-],
-practice:"Which gas do plants take in during photosynthesis?",
-answer:["Oxygen","Carbon dioxide","Nitrogen"],
-right:1,
-tip:"Plants take in carbon dioxide from the air. They use it together with water and light energy to make glucose. Oxygen is released."
+question:"Which statement is an equation?",
+answers:["3 + 2 = 5","3 + 2 = 8","3 + 2"],right:0,
+explain:"3 + 2 = 5 is an equation because it states that two equal values are the same."
 },
-
-"Forces and Motion": {
+{
+name:"Positive and negative numbers",
+intro:"Understanding positive and negative numbers helps us work with operations in algebra.",
+lessons:[
+["Positive numbers","Positive numbers are greater than zero. For example, +2, +5 and +10."],
+["Negative numbers","Negative numbers are less than zero. Examples include -2, -5 and -10."],
+["Opposite numbers","Numbers such as +4 and -4 are opposites. They have the same size but opposite signs."],
+["Adding opposites","When we add +4 and -4, their effects cancel out. The result is zero: +4 - 4 = 0."]
+],
+question:"What is the result of +6 - 6?",
+answers:["12","0","-12"],right:1,
+explain:"Positive 6 and negative 6 cancel each other because they are opposites. The result is zero."
+},
+{
+name:"Inverse operations",
+intro:"Inverse operations are operations that undo or reverse each other.",
+lessons:[
+["Addition and subtraction","Subtraction reverses addition. If we add 4 to a number, subtracting 4 takes us back to the starting number."],
+["Why do we use them?","In x + 4 = 9, we want x alone. Since 4 is being added, we subtract 4 to undo that addition."],
+["Why do we subtract on both sides?","An equation is like a balanced scale. Whatever we do to one side, we must also do to the other side to keep it balanced."],
+["Other inverse operations","Multiplication and division are also opposites. Dividing can undo multiplication."]
+],
+question:"Which operation reverses multiplication?",
+answers:["Addition","Division","Subtraction"],right:1,
+explain:"Division reverses multiplication. For example, 3 × 4 = 12, and 12 ÷ 3 = 4."
+},
+{
+name:"One-step equations",
+intro:"A one-step equation can be solved by undoing one operation.",
+lessons:[
+["Start with an equation","Consider x + 4 = 9. We want to find the number represented by x."],
+["Undo the addition","Subtract 4 from both sides: x + 4 - 4 = 9 - 4."],
+["Why does +4 - 4 become zero?","Positive 4 and negative 4 are opposites. They cancel out, leaving zero. So x + 0 = x."],
+["Finish solving","The right side becomes 9 - 4 = 5. Therefore, x = 5."],
+["Check your answer","Put 5 into the original equation: 5 + 4 = 9. The statement is true."]
+],
+question:"Solve x + 3 = 8.",
+answers:["x = 11","x = 5","x = 3"],right:1,
+explain:"Subtract 3 from both sides. x + 3 - 3 = 8 - 3. The 3 and -3 cancel, leaving x = 5. Check: 5 + 3 = 8."
+},
+{
+name:"Two-step equations",
+intro:"A two-step equation requires two inverse operations to isolate the unknown.",
+lessons:[
+["Look at the equation","Consider 2x + 3 = 11. Here, 3 is added to 2x."],
+["First undo addition","Subtract 3 from both sides: 2x + 3 - 3 = 11 - 3. This gives 2x = 8."],
+["Next undo multiplication","2x means 2 multiplied by x. Divide both sides by 2: 2x ÷ 2 = 8 ÷ 2."],
+["Find x","This leaves x = 4."],
+["Check","2(4) + 3 = 8 + 3 = 11. The answer is correct."]
+],
+question:"Solve 2x + 4 = 10.",
+answers:["x = 3","x = 7","x = 2"],right:0,
+explain:"Subtract 4 first: 2x = 6. Divide both sides by 2: x = 3."
+}
+]
+},
+"Photosynthesis":{
+description:"Understand how green plants make food and the role of sunlight, water and gases.",
+subtopics:[
+{
+name:"What is photosynthesis?",
+intro:"Photosynthesis is the process by which green plants make their own food using light energy.",
+lessons:[
+["Why do plants need food?","Plants need food for energy, growth and other life processes."],
+["What is photosynthesis?","It is the process through which green plants use light energy to make glucose from carbon dioxide and water."],
+["Where does it happen?","Photosynthesis takes place mainly in the leaves, inside structures called chloroplasts."]
+],
+question:"What is photosynthesis?",
+answers:["How plants make food using light energy","How plants absorb minerals only","How plants take in oxygen only"],right:0,
+explain:"Photosynthesis uses light energy, carbon dioxide and water to produce glucose and oxygen."
+},
+{
+name:"Requirements for photosynthesis",
+intro:"Plants need certain materials and conditions for photosynthesis.",
+lessons:[
+["Light","Light provides the energy needed for photosynthesis."],
+["Water","Roots absorb water from the soil and transport it to the leaves."],
+["Carbon dioxide","Leaves take in carbon dioxide from the air through tiny openings called stomata."],
+["Chlorophyll","Chlorophyll is the green pigment that absorbs light energy."]
+],
+question:"Which gas do plants take in for photosynthesis?",
+answers:["Oxygen","Carbon dioxide","Nitrogen"],right:1,
+explain:"Plants use carbon dioxide together with water and light energy to make glucose."
+},
+{
+name:"Products of photosynthesis",
+intro:"Photosynthesis produces substances that are important to plants and other living things.",
+lessons:[
+["Glucose","Glucose is a sugar that plants use for energy and growth. Some can be stored as starch."],
+["Oxygen","Oxygen is released into the surrounding air during photosynthesis."],
+["Putting it together","The main products are glucose and oxygen."]
+],
+question:"Which sugar is produced during photosynthesis?",
+answers:["Glucose","Lactose","Maltose"],right:0,
+explain:"Glucose is produced during photosynthesis and can be used by the plant or stored."
+}
+]
+},
+"Forces and Motion":{
+description:"Explore pushes, pulls, movement and how forces affect objects.",
+subtopics:[
+{
+name:"Understanding force",
+intro:"A force is a push or pull that can affect an object's motion or shape.",
+lessons:[
+["A push","A push moves an object away from the person or thing applying the force."],
+["A pull","A pull brings an object towards the person or thing applying the force."],
+["Effects of force","A force can start or stop movement, change speed, change direction or change shape."]
+],
 question:"What is a force?",
-options:[
-"A push or a pull",
-"A type of energy only",
-"The speed of an object"
+answers:["A push or a pull","A type of sound","A measure of temperature"],right:0,
+explain:"A force is a push or pull that can change an object's motion or shape."
+},
+{
+name:"Types of forces",
+intro:"Forces can act through direct contact or without direct contact.",
+lessons:[
+["Contact forces","These happen when objects touch. Examples include friction and a push."],
+["Non-contact forces","These can act without objects touching. Examples include gravity and magnetic force."],
+["Friction","Friction acts against movement between surfaces in contact."]
 ],
-correct:0,
-explain:[
-"A force is a push or a pull acting on an object.",
-"A force can change an object's motion, direction or shape.",
-"Forces are measured in newtons (N)."
+question:"Which is a non-contact force?",
+answers:["Friction","Gravity","A push"],right:1,
+explain:"Gravity acts between objects without requiring them to touch."
+},
+{
+name:"Balanced and unbalanced forces",
+intro:"The combined effect of forces determines whether an object's motion changes.",
+lessons:[
+["Balanced forces","Forces are balanced when they cancel out and the resultant force is zero."],
+["Unbalanced forces","Unbalanced forces produce a non-zero resultant force and can change motion."],
+["An example","A stationary object remains stationary when the forces acting on it are balanced."]
 ],
-examples:[
-"Example 1: Pushing a stationary chair can make it move.",
-"Example 2: Applying a force to a moving ball can change its direction.",
-"Remember: the effect of a force depends on the forces acting together and the object's existing motion."
-],
-practice:"What happens to a stationary object when balanced forces act on it?",
-answer:[
-"It must begin moving",
-"It remains stationary",
-"It changes its direction"
-],
-right:1,
-tip:"Balanced forces have a resultant force of zero. A stationary object therefore remains stationary."
+question:"What is the resultant force when forces are balanced?",
+answers:["Zero","Always upward","Always downward"],right:0,
+explain:"Balanced forces cancel out, so their resultant force is zero."
+}
+]
 }
 };
 
-let selected="";
+let selectedTopic="";
+let selectedSubtopic=0;
+let lessonStep=0;
+let practiceIndex=0;
+let guided=false;
 let score=0;
 let diagnosticCorrect=false;
+let answersCorrect=0;
+
+function home(){
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="tag">WELCOME TO MINDSPRING</p>
+<h2>Let's find the missing piece. 🌱</h2>
+<p>Learning is not about knowing everything already. It's about understanding one step at a time.</p>
+<p>MindSpring helps you explore topics, understand foundations, practise and strengthen your knowledge.</p>
+<button onclick="showTopics()">Start learning</button>
+</div>
+<div class="card">
+<h3>How MindSpring works</h3>
+<p><strong>Discover:</strong> Find out what you already understand.</p>
+<p><strong>Guide:</strong> Learn concepts and break down difficult steps.</p>
+<p><strong>Strengthen:</strong> Practise independently and review your progress.</p>
+</div>`;
+}
 
 function showTopics(){
 document.getElementById("content").innerHTML=`
 <div class="card">
+<p class="tag">DISCOVER</p>
 <h2>Choose a learning topic</h2>
 <p>What would you like to explore today?</p>
-${Object.keys(topics).map(t=>`<button class="option" onclick="start('${t}')">${t} →</button>`).join("")}
+${Object.keys(topics).map(t=>`<button class="option" onclick="openTopic('${t}')">${t} →<br><span class="small">${topics[t].description}</span></button>`).join("")}
 <button class="secondary" onclick="home()">Back home</button>
 </div>`;
 }
 
-function start(topic){
-selected=topic;
-score=0;
-diagnosticCorrect=false;
-const t=topics[topic];
+function openTopic(name){
+selectedTopic=name;
 document.getElementById("content").innerHTML=`
 <div class="card">
-<p class="small">DISCOVER · ${topic}</p>
-<h2>Let's see what you already know.</h2>
-<p>${t.question}</p>
-${t.options.map((o,i)=>`<button class="option" onclick="diagnose(${i})">${o}</button>`).join("")}
+<p class="tag">YOUR LEARNING JOURNEY</p>
+<h2>${name}</h2>
+<p>${topics[name].description}</p>
+<div class="lesson">
+<strong>Choose how you want to learn</strong>
+<p>Explore any subtopic yourself, or let MindSpring recommend a starting point.</p>
+<button onclick="startGuided()">Guide me</button>
+<button class="secondary" onclick="showSubtopics()">Choose for myself</button>
+</div>
+<button class="secondary" onclick="showTopics()">Back to topics</button>
+</div>`;
+}
+
+function showSubtopics(){
+const list=topics[selectedTopic].subtopics;
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="tag">EXPLORE SUBTOPICS</p>
+<h2>${selectedTopic}</h2>
+<p>Choose any part you want to learn. You can explore them in any order.</p>
+${list.map((s,i)=>`<button class="option" onclick="openSubtopic(${i})">${i+1}. ${s.name} →</button>`).join("")}
+<button class="secondary" onclick="openTopic(selectedTopic)">Back</button>
+</div>`;
+}
+
+function startGuided(){
+guided=true;
+selectedSubtopic=0;
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="tag">GUIDED LEARNING</p>
+<h2>Let's find your starting point.</h2>
+<p>MindSpring will take you through the subtopics in a recommended order, beginning with the foundations.</p>
+<p>You can still choose another subtopic whenever you want.</p>
+<button onclick="openSubtopic(0)">Begin guided learning</button>
+<button class="secondary" onclick="showSubtopics()">Choose a subtopic instead</button>
+</div>`;
+}
+
+function openSubtopic(index){
+selectedSubtopic=index;
+lessonStep=0;
+practiceIndex=0;
+answersCorrect=0;
+score=0;
+const sub=topics[selectedTopic].subtopics[index];
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="tag">DISCOVER · ${selectedTopic}</p>
+<h2>${sub.name}</h2>
+<p>${sub.intro}</p>
+<p>Let's first check what you already know.</p>
+<h3>${sub.question}</h3>
+${sub.answers.map((a,i)=>`<button class="option" onclick="diagnose(${i})">${a}</button>`).join("")}
 <p class="small">This is a learning check, not an exam.</p>
 </div>`;
 }
 
 function diagnose(choice){
-const t=topics[selected];
-diagnosticCorrect=choice===t.correct;
-score=diagnosticCorrect?1:0;
+const sub=topics[selectedTopic].subtopics[selectedSubtopic];
+diagnosticCorrect=choice===sub.right;
+if(diagnosticCorrect)score=1;
 document.getElementById("content").innerHTML=`
 <div class="card">
-<p class="small">GUIDE · ${selected}</p>
-<h2>${diagnosticCorrect?"Good start!":"Let's explore that idea."}</h2>
-<p>${diagnosticCorrect?"You recognised the main idea. Now let's deepen your understanding.":"It's okay if you weren't sure. This is an opportunity to learn."}</p>
-${t.explain.map(p=>`<p>${p}</p>`).join("")}
-<h3>Let's work through some examples</h3>
-${t.examples.map(e=>`<div class="lesson"><p>${e}</p></div>`).join("")}
-<button onclick="practice()">Continue to practice</button>
+<p class="tag">GUIDE · ${selectedTopic}</p>
+<h2>${diagnosticCorrect?"Good start!":"Let's build your understanding."}</h2>
+<p>${diagnosticCorrect?"You recognised this idea. Let's deepen your understanding.":"That's okay. This is an opportunity to learn the concept step by step."}</p>
+<div class="lesson">${sub.intro}</div>
+<button onclick="showLesson()">Start the lesson</button>
+<button class="secondary" onclick="showSubtopics()">Choose another subtopic</button>
 </div>`;
 }
 
-function practice(){
-const t=topics[selected];
+function showLesson(){
+const sub=topics[selectedTopic].subtopics[selectedSubtopic];
+const item=sub.lessons[lessonStep];
+const pct=((lessonStep+1)/sub.lessons.length)*100;
 document.getElementById("content").innerHTML=`
 <div class="card">
-<p class="small">STRENGTHEN · ${selected}</p>
+<p class="tag">LEARN · ${selectedTopic}</p>
+<h2>${sub.name}</h2>
+<div class="progress"><div style="width:${pct}%"></div></div>
+<p class="small">Learning step ${lessonStep+1} of ${sub.lessons.length}</p>
+<div class="step">
+<h3>${item[0]}</h3>
+<p>${item[1]}</p>
+</div>
+${lessonStep===sub.lessons.length-1?`<div class="notice">You've reached the end of this explanation. Let's see what you can do independently.</div>`:""}
+<button onclick="nextLesson()" ${lessonStep===sub.lessons.length-1?"":" "}>${lessonStep===sub.lessons.length-1?"Continue to practice":"Next step"}</button>
+${lessonStep>0?`<button class="secondary" onclick="previousLesson()">Previous</button>`:""}
+<button class="secondary" onclick="showSubtopics()">All subtopics</button>
+</div>`;
+}
+
+function nextLesson(){
+const sub=topics[selectedTopic].subtopics[selectedSubtopic];
+if(lessonStep<sub.lessons.length-1){
+lessonStep++;
+showLesson();
+}else{
+showPractice();
+}
+}
+
+function previousLesson(){
+lessonStep--;
+showLesson();
+}
+
+function showPractice(){
+const sub=topics[selectedTopic].subtopics[selectedSubtopic];
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="tag">STRENGTHEN · ${selectedTopic}</p>
 <h2>Try it independently.</h2>
-<p>${t.practice}</p>
-${t.answer.map((a,i)=>`<button class="option" onclick="finish(${i})">${a}</button>`).join("")}
+<p>${sub.question}</p>
+${sub.answers.map((a,i)=>`<button class="option" onclick="finish(${i})">${a}</button>`).join("")}
+<p class="small">Take your time. Think about what you have learned.</p>
 </div>`;
 }
 
 function finish(choice){
-const t=topics[selected];
-const correct=choice===t.right;
-score+=correct?1:0;
+const sub=topics[selectedTopic].subtopics[selectedSubtopic];
+const correct=choice===sub.right;
+if(correct)score++;
 document.getElementById("content").innerHTML=`
 <div class="card">
-<p class="small">YOUR LEARNING SUMMARY</p>
+<p class="tag">YOUR LEARNING SUMMARY</p>
 <h2>${correct?"Well done!":"Keep building your understanding."}</h2>
-<p>${correct?"You answered the practice question correctly.":"Let's review the correct reasoning."}</p>
+<p>${correct?"You answered the practice question correctly.":"Let's review the correct reasoning and strengthen this concept."}</p>
 <div class="lesson">
-<p><strong>Practice question:</strong> ${t.practice}</p>
-<p><strong>Explanation:</strong> ${t.tip}</p>
+<p><strong>Question:</strong> ${sub.question}</p>
+<p><strong>Explanation:</strong> ${sub.explain}</p>
 </div>
 <p><strong>Learning check:</strong> ${diagnosticCorrect?"Correct":"Needs review"}</p>
 <p><strong>Practice:</strong> ${correct?"Correct":"Needs review"}</p>
-<p><strong>Your result: ${score}/2</strong></p>
-<button onclick="showTopics()">Explore another topic</button>
+<p><strong>Your result:</strong> ${score}/2</p>
+<h3>What would you like to do next?</h3>
+<button onclick="openSubtopic(${selectedSubtopic})">Practise this subtopic again</button>
+<button class="secondary" onclick="showLesson()">Review lesson</button>
+<button class="secondary" onclick="showSubtopics()">Explore other subtopics</button>
+<button class="secondary" onclick="nextRecommended()">Continue learning</button>
+<button class="secondary" onclick="showTopics()">Explore another topic</button>
 <button class="secondary" onclick="home()">Home</button>
 </div>`;
 }
 
-function home(){
+function nextRecommended(){
+const total=topics[selectedTopic].subtopics.length;
+if(selectedSubtopic<total-1){
+openSubtopic(selectedSubtopic+1);
+}else{
 document.getElementById("content").innerHTML=`
 <div class="card">
-<h2>Welcome back to MindSpring 🌱</h2>
-<p>From confusion to understanding.</p>
-<button onclick="showTopics()">Start learning</button>
+<h2>You've explored all the current subtopics!</h2>
+<p>You've completed this learning pathway. You can review any subtopic or explore another topic.</p>
+<button onclick="showSubtopics()">Review subtopics</button>
+<button class="secondary" onclick="showTopics()">Explore another topic</button>
 </div>`;
 }
+}
+
+home();
 </script>
 </body>
 </html>
