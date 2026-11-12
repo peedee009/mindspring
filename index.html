@@ -4,423 +4,748 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MindSpring | From Confusion to Understanding</title>
+<meta name="theme-color" content="#102a43">
+<title>MindSpring | Learn Through Understanding</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f7f4;color:#20352c}
-header{background:#123d32;color:white;padding:20px 18px}
-header h1{margin:0;font-size:27px}
-header p{margin:6px 0 0;color:#d3e8df}
-main{max-width:720px;margin:auto;padding:20px 15px}
-.card{background:white;border-radius:16px;padding:21px;margin-bottom:16px;box-shadow:0 3px 12px #173d3210}
-h2,h3{color:#174c3c}
-h2{margin-top:8px}
-p{line-height:1.65}
-button{border:0;border-radius:10px;padding:13px 16px;background:#176b50;color:white;font-size:15px;font-weight:600;cursor:pointer;margin:5px 3px 5px 0}
-button.secondary{background:#e6f1ec;color:#174c3c}
-button.option{display:block;width:100%;text-align:left;background:#f0f6f2;color:#20352c;border:1px solid #dce9e1;margin:9px 0}
-button.option:active{background:#dcefe4}
-button:disabled{opacity:.5}
-.small{font-size:13px;color:#718078}
-.tag{font-size:12px;font-weight:bold;letter-spacing:.6px;color:#247453}
-.lesson{background:#f0f6f2;padding:14px;border-radius:11px;margin:12px 0}
-.step{border-left:4px solid #3b9b70;padding:10px 13px;margin:13px 0;background:#f7faf8;border-radius:5px}
-.notice{background:#fff8e7;border-left:4px solid #d7a43b;padding:12px;border-radius:8px;margin:12px 0}
-.progress{height:7px;background:#e5eee8;border-radius:10px;overflow:hidden;margin:12px 0}
-.progress div{height:100%;background:#27845e;width:0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.grid button{margin:0;text-align:left;min-height:75px}
-#content{min-height:300px}
-footer{text-align:center;padding:18px;color:#718078;font-size:12px}
-a{color:#176b50}
-@media(max-width:430px){.grid{grid-template-columns:1fr}}
+:root {
+  --navy:#102a43;
+  --blue:#2463eb;
+  --pale:#edf4ff;
+  --ink:#243447;
+  --muted:#62748a;
+  --white:#fff;
+  --green:#16845b;
+  --border:#dce5ef;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:#f4f7fb;
+  color:var(--ink);
+  font-family:Arial, sans-serif;
+  line-height:1.65;
+}
+header {
+  background:var(--navy);
+  color:white;
+  padding:20px;
+}
+.header-inner {
+  max-width:850px;
+  margin:auto;
+}
+header h1 { margin:0; font-size:27px; }
+header p { margin:3px 0 0; opacity:.85; }
+main {
+  max-width:850px;
+  margin:25px auto;
+  padding:0 16px 45px;
+}
+.card {
+  background:white;
+  padding:22px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  margin-bottom:16px;
+}
+h2 { color:var(--navy); margin-top:0; }
+h3 { color:var(--navy); }
+.muted { color:var(--muted); }
+button {
+  border:0;
+  border-radius:9px;
+  padding:12px 17px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  margin:5px 5px 5px 0;
+  background:var(--blue);
+  color:white;
+}
+button.secondary {
+  background:var(--pale);
+  color:var(--navy);
+  border:1px solid #d5e3ff;
+}
+button:disabled { opacity:.5; cursor:not-allowed; }
+.item {
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:16px;
+  margin:10px 0;
+  background:white;
+  color:var(--ink);
+  border:1px solid var(--border);
+  border-radius:11px;
+}
+.item strong { display:block; color:var(--navy); }
+.item small { color:var(--muted); font-weight:400; }
+.choice {
+  display:block;
+  width:100%;
+  text-align:left;
+  background:white;
+  color:var(--ink);
+  border:1px solid var(--border);
+  margin:9px 0;
+}
+.choice.selected {
+  border:2px solid var(--blue);
+  background:var(--pale);
+}
+.notice {
+  background:var(--pale);
+  border-left:4px solid var(--blue);
+  padding:13px;
+  border-radius:7px;
+  margin:14px 0;
+}
+.success {
+  background:#e9f7f0;
+  border-left:4px solid var(--green);
+  padding:13px;
+  border-radius:7px;
+  margin:14px 0;
+}
+.progress {
+  height:8px;
+  background:#e5ebf3;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0;
+}
+.progress span {
+  display:block;
+  height:100%;
+  background:var(--blue);
+  width:0;
+  transition:width .2s;
+}
+footer {
+  text-align:center;
+  color:var(--muted);
+  padding:20px;
+  font-size:13px;
+}
+.hidden { display:none; }
+.breadcrumb {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:12px;
+}
+.lesson-step {
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:15px;
+  margin:12px 0;
+}
+input[type="text"] {
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-size:16px;
+}
 </style>
 </head>
+
 <body>
 <header>
-<h1>MindSpring 🌱</h1>
-<p>From confusion to understanding.</p>
+  <div class="header-inner">
+    <h1>MindSpring</h1>
+    <p>From confusion to understanding.</p>
+  </div>
 </header>
 
 <main>
-<div id="content"></div>
+  <div id="app"></div>
 </main>
 
-<footer>MindSpring Prototype · Learning through understanding</footer>
+<footer>
+  MindSpring Prototype · Learning through understanding
+</footer>
 
 <script>
-const topics = {
-"Linear Equations":{
-description:"Learn how unknown numbers work and how to solve equations step by step.",
-subtopics:[
-{
-name:"Variables, constants and coefficients",
-intro:"Before solving equations, let's understand the different parts of an algebraic expression.",
-lessons:[
-["What is a variable?","A variable is a letter or symbol that represents a number. For example, in x + 4, the letter x represents a number we may not know yet."],
-["What is a constant?","A constant is a number that does not change in the expression. In x + 4, the number 4 is the constant."],
-["What is a coefficient?","A coefficient is the number multiplying a variable. In 3x, the coefficient is 3. This means 3 × x."],
-["Let's put it together","In 5x + 7, x is the variable, 5 is the coefficient and 7 is the constant."]
-],
-question:"In the expression 4x + 6, what is the coefficient?",
-answers:["4","6","x"],right:0,
-explain:"The coefficient is 4 because it multiplies the variable x."
-},
-{
-name:"Understanding equations",
-intro:"An equation is a mathematical statement showing that two expressions are equal.",
-lessons:[
-["What does equality mean?","The equals sign (=) means that the value on the left is the same as the value on the right."],
-["What is an equation?","For example, 3 + 2 = 5 is an equation because both sides have the same value."],
-["What is an unknown?","In x + 3 = 7, x is the unknown number. We need to discover which number makes the statement true."],
-["Think about it","If x were 4, then 4 + 3 = 7. Both sides would be equal."]
-],
-question:"Which statement is an equation?",
-answers:["3 + 2 = 5","3 + 2 = 8","3 + 2"],right:0,
-explain:"3 + 2 = 5 is an equation because it states that two equal values are the same."
-},
-{
-name:"Positive and negative numbers",
-intro:"Understanding positive and negative numbers helps us work with operations in algebra.",
-lessons:[
-["Positive numbers","Positive numbers are greater than zero. For example, +2, +5 and +10."],
-["Negative numbers","Negative numbers are less than zero. Examples include -2, -5 and -10."],
-["Opposite numbers","Numbers such as +4 and -4 are opposites. They have the same size but opposite signs."],
-["Adding opposites","When we add +4 and -4, their effects cancel out. The result is zero: +4 - 4 = 0."]
-],
-question:"What is the result of +6 - 6?",
-answers:["12","0","-12"],right:1,
-explain:"Positive 6 and negative 6 cancel each other because they are opposites. The result is zero."
-},
-{
-name:"Inverse operations",
-intro:"Inverse operations are operations that undo or reverse each other.",
-lessons:[
-["Addition and subtraction","Subtraction reverses addition. If we add 4 to a number, subtracting 4 takes us back to the starting number."],
-["Why do we use them?","In x + 4 = 9, we want x alone. Since 4 is being added, we subtract 4 to undo that addition."],
-["Why do we subtract on both sides?","An equation is like a balanced scale. Whatever we do to one side, we must also do to the other side to keep it balanced."],
-["Other inverse operations","Multiplication and division are also opposites. Dividing can undo multiplication."]
-],
-question:"Which operation reverses multiplication?",
-answers:["Addition","Division","Subtraction"],right:1,
-explain:"Division reverses multiplication. For example, 3 × 4 = 12, and 12 ÷ 3 = 4."
-},
-{
-name:"One-step equations",
-intro:"A one-step equation can be solved by undoing one operation.",
-lessons:[
-["Start with an equation","Consider x + 4 = 9. We want to find the number represented by x."],
-["Undo the addition","Subtract 4 from both sides: x + 4 - 4 = 9 - 4."],
-["Why does +4 - 4 become zero?","Positive 4 and negative 4 are opposites. They cancel out, leaving zero. So x + 0 = x."],
-["Finish solving","The right side becomes 9 - 4 = 5. Therefore, x = 5."],
-["Check your answer","Put 5 into the original equation: 5 + 4 = 9. The statement is true."]
-],
-question:"Solve x + 3 = 8.",
-answers:["x = 11","x = 5","x = 3"],right:1,
-explain:"Subtract 3 from both sides. x + 3 - 3 = 8 - 3. The 3 and -3 cancel, leaving x = 5. Check: 5 + 3 = 8."
-},
-{
-name:"Two-step equations",
-intro:"A two-step equation requires two inverse operations to isolate the unknown.",
-lessons:[
-["Look at the equation","Consider 2x + 3 = 11. Here, 3 is added to 2x."],
-["First undo addition","Subtract 3 from both sides: 2x + 3 - 3 = 11 - 3. This gives 2x = 8."],
-["Next undo multiplication","2x means 2 multiplied by x. Divide both sides by 2: 2x ÷ 2 = 8 ÷ 2."],
-["Find x","This leaves x = 4."],
-["Check","2(4) + 3 = 8 + 3 = 11. The answer is correct."]
-],
-question:"Solve 2x + 4 = 10.",
-answers:["x = 3","x = 7","x = 2"],right:0,
-explain:"Subtract 4 first: 2x = 6. Divide both sides by 2: x = 3."
-}
-]
-},
-"Photosynthesis":{
-description:"Understand how green plants make food and the role of sunlight, water and gases.",
-subtopics:[
-{
-name:"What is photosynthesis?",
-intro:"Photosynthesis is the process by which green plants make their own food using light energy.",
-lessons:[
-["Why do plants need food?","Plants need food for energy, growth and other life processes."],
-["What is photosynthesis?","It is the process through which green plants use light energy to make glucose from carbon dioxide and water."],
-["Where does it happen?","Photosynthesis takes place mainly in the leaves, inside structures called chloroplasts."]
-],
-question:"What is photosynthesis?",
-answers:["How plants make food using light energy","How plants absorb minerals only","How plants take in oxygen only"],right:0,
-explain:"Photosynthesis uses light energy, carbon dioxide and water to produce glucose and oxygen."
-},
-{
-name:"Requirements for photosynthesis",
-intro:"Plants need certain materials and conditions for photosynthesis.",
-lessons:[
-["Light","Light provides the energy needed for photosynthesis."],
-["Water","Roots absorb water from the soil and transport it to the leaves."],
-["Carbon dioxide","Leaves take in carbon dioxide from the air through tiny openings called stomata."],
-["Chlorophyll","Chlorophyll is the green pigment that absorbs light energy."]
-],
-question:"Which gas do plants take in for photosynthesis?",
-answers:["Oxygen","Carbon dioxide","Nitrogen"],right:1,
-explain:"Plants use carbon dioxide together with water and light energy to make glucose."
-},
-{
-name:"Products of photosynthesis",
-intro:"Photosynthesis produces substances that are important to plants and other living things.",
-lessons:[
-["Glucose","Glucose is a sugar that plants use for energy and growth. Some can be stored as starch."],
-["Oxygen","Oxygen is released into the surrounding air during photosynthesis."],
-["Putting it together","The main products are glucose and oxygen."]
-],
-question:"Which sugar is produced during photosynthesis?",
-answers:["Glucose","Lactose","Maltose"],right:0,
-explain:"Glucose is produced during photosynthesis and can be used by the plant or stored."
-}
-]
-},
-"Forces and Motion":{
-description:"Explore pushes, pulls, movement and how forces affect objects.",
-subtopics:[
-{
-name:"Understanding force",
-intro:"A force is a push or pull that can affect an object's motion or shape.",
-lessons:[
-["A push","A push moves an object away from the person or thing applying the force."],
-["A pull","A pull brings an object towards the person or thing applying the force."],
-["Effects of force","A force can start or stop movement, change speed, change direction or change shape."]
-],
-question:"What is a force?",
-answers:["A push or a pull","A type of sound","A measure of temperature"],right:0,
-explain:"A force is a push or pull that can change an object's motion or shape."
-},
-{
-name:"Types of forces",
-intro:"Forces can act through direct contact or without direct contact.",
-lessons:[
-["Contact forces","These happen when objects touch. Examples include friction and a push."],
-["Non-contact forces","These can act without objects touching. Examples include gravity and magnetic force."],
-["Friction","Friction acts against movement between surfaces in contact."]
-],
-question:"Which is a non-contact force?",
-answers:["Friction","Gravity","A push"],right:1,
-explain:"Gravity acts between objects without requiring them to touch."
-},
-{
-name:"Balanced and unbalanced forces",
-intro:"The combined effect of forces determines whether an object's motion changes.",
-lessons:[
-["Balanced forces","Forces are balanced when they cancel out and the resultant force is zero."],
-["Unbalanced forces","Unbalanced forces produce a non-zero resultant force and can change motion."],
-["An example","A stationary object remains stationary when the forces acting on it are balanced."]
-],
-question:"What is the resultant force when forces are balanced?",
-answers:["Zero","Always upward","Always downward"],right:0,
-explain:"Balanced forces cancel out, so their resultant force is zero."
-}
-]
-}
+const app = document.getElementById("app");
+
+const curriculum = {
+  "Mathematics": {
+    "Linear Equations": [
+      {
+        title:"Variables, constants and coefficients",
+        intro:"Before solving equations, understand the parts that make them up.",
+        lessons:[
+          ["What is a variable?",
+           "A variable is a letter or symbol that represents a number we do not yet know.",
+           "For example, in x + 4 = 9, x represents the unknown number."],
+          ["What is a constant?",
+           "A constant is a number whose value does not change in the expression.",
+           "In x + 4 = 9, the numbers 4 and 9 are constants."],
+          ["What is a coefficient?",
+           "A coefficient is the number multiplying a variable.",
+           "In 3x, the coefficient is 3. It means 3 multiplied by x."]
+        ],
+        question:"In 5x + 2 = 12, what is the coefficient of x?",
+        options:["2","5","12","x"],
+        answer:1,
+        explanation:"The coefficient is 5 because 5 is multiplying x."
+      },
+      {
+        title:"Understanding equations",
+        intro:"An equation is a mathematical statement that says two expressions are equal.",
+        lessons:[
+          ["The equals sign",
+           "The equals sign means that the expression on the left has the same value as the expression on the right.",
+           "For example, 4 + 5 = 9. Both sides have the value 9."],
+          ["Think of a balanced scale",
+           "Imagine a weighing scale with two sides. If both sides have equal weight, the scale is balanced.",
+           "An equation works in a similar way. Both sides must remain equal."],
+          ["Why balance matters",
+           "If you add 2 to one side, you must also add 2 to the other side to preserve equality.",
+           "The same principle applies to subtraction, multiplication and division."]
+        ],
+        question:"What does the equals sign tell us?",
+        options:["The left side is always bigger","Both sides have equal value","The right side is always zero","The numbers must be multiplied"],
+        answer:1,
+        explanation:"An equals sign states that the values on both sides are the same."
+      },
+      {
+        title:"Positive and negative numbers",
+        intro:"Understanding opposite numbers makes it easier to understand why some terms cancel out.",
+        lessons:[
+          ["Positive numbers",
+           "A positive number is greater than zero. For example, +4 represents four units in the positive direction."],
+          ["Negative numbers",
+           "A negative number is less than zero. For example, -4 represents four units in the opposite direction."],
+          ["Opposite numbers",
+           "+4 and -4 are opposites. They have equal sizes but opposite signs.",
+           "If you move four steps forward and then four steps backward, you return to where you started."],
+          ["Why do they make zero?",
+           "Starting at zero, adding 4 takes you to 4. Subtracting 4 takes you back to zero.",
+           "Therefore, +4 - 4 = 0. Opposite numbers cancel because their combined value is zero."]
+        ],
+        question:"What is the value of +7 - 7?",
+        options:["14","7","0","-7"],
+        answer:2,
+        explanation:"+7 and -7 are opposites. Their combined value is zero."
+      },
+      {
+        title:"Inverse operations",
+        intro:"Inverse operations are operations that undo one another.",
+        lessons:[
+          ["Addition and subtraction",
+           "Subtraction reverses addition. If you add 4 to a number, subtracting 4 takes you back to the original number."],
+          ["Multiplication and division",
+           "Division reverses multiplication. If a number is multiplied by 3, dividing by 3 reverses that operation."],
+          ["Why use inverse operations?",
+           "When solving an equation, our goal is to leave the unknown variable alone.",
+           "We use the opposite operation to undo what is happening to the variable."]
+        ],
+        question:"Which operation reverses multiplication by 5?",
+        options:["Addition by 5","Subtraction by 5","Division by 5","Multiplication by 5"],
+        answer:2,
+        explanation:"Division by 5 reverses multiplication by 5."
+      },
+      {
+        title:"One-step equations",
+        intro:"Let's solve an equation by removing what is attached to the unknown.",
+        lessons:[
+          ["Look at the equation",
+           "Consider x + 4 = 9.",
+           "Our goal is to find the value of x. We want x to remain alone on one side."],
+          ["Identify the operation",
+           "The variable x has 4 added to it.",
+           "To undo addition by 4, we use subtraction by 4."],
+          ["Keep both sides balanced",
+           "Subtract 4 from both sides of the equation.",
+           "x + 4 - 4 = 9 - 4.",
+           "We do this on both sides because an equation must remain balanced."],
+          ["Understand the cancellation",
+           "Look at +4 - 4.",
+           "Positive 4 and negative 4 are opposites. Their combined value is zero.",
+           "So +4 - 4 = 0, leaving x + 0 on the left."],
+          ["Simplify",
+           "Adding zero does not change a number. Therefore x + 0 = x.",
+           "On the right, 9 - 4 = 5.",
+           "We are left with x = 5."],
+          ["Check your answer",
+           "Put 5 back into the original equation.",
+           "5 + 4 = 9.",
+           "Both sides are equal, so x = 5 is correct."]
+        ],
+        question:"Solve x + 6 = 10.",
+        options:["x = 16","x = 4","x = 6","x = 10"],
+        answer:1,
+        explanation:"Subtract 6 from both sides: x = 10 - 6 = 4. Check: 4 + 6 = 10."
+      },
+      {
+        title:"Two-step equations",
+        intro:"Some equations require more than one operation to isolate the variable.",
+        lessons:[
+          ["Study the equation",
+           "Consider 2x + 3 = 11.",
+           "The variable is multiplied by 2 and then 3 is added."],
+          ["Undo addition first",
+           "Subtract 3 from both sides.",
+           "2x + 3 - 3 = 11 - 3.",
+           "This gives 2x = 8."],
+          ["Undo multiplication",
+           "The variable is multiplied by 2.",
+           "Divide both sides by 2 to isolate x.",
+           "2x ÷ 2 = 8 ÷ 2, so x = 4."],
+          ["Check",
+           "Substitute 4 into the original equation.",
+           "2(4) + 3 = 8 + 3 = 11.",
+           "The equation is balanced."]
+        ],
+        question:"Solve 3x + 2 = 14.",
+        options:["x = 3","x = 4","x = 5","x = 12"],
+        answer:1,
+        explanation:"Subtract 2: 3x = 12. Divide by 3: x = 4."
+      }
+    ]
+  },
+
+  "Biology": {
+    "Photosynthesis": [
+      {
+        title:"What is photosynthesis?",
+        intro:"Plants make their own food through a process called photosynthesis.",
+        lessons:[
+          ["Meaning",
+           "Photosynthesis is the process by which green plants use light energy to make glucose from carbon dioxide and water."],
+          ["Why it matters",
+           "Glucose provides plants with a source of chemical energy and material for growth."],
+          ["Where it happens",
+           "Photosynthesis takes place in chloroplasts, which contain the green pigment chlorophyll."]
+        ],
+        question:"What is the main food produced during photosynthesis?",
+        options:["Glucose","Oxygen","Water","Carbon dioxide"],
+        answer:0,
+        explanation:"Glucose is the sugar produced by photosynthesis."
+      },
+      {
+        title:"Requirements for photosynthesis",
+        intro:"Photosynthesis needs certain materials and conditions.",
+        lessons:[
+          ["Water",
+           "Plants absorb water from the soil, mainly through their roots."],
+          ["Carbon dioxide",
+           "Carbon dioxide enters the leaf from the surrounding air, mainly through tiny openings called stomata."],
+          ["Light and chlorophyll",
+           "Light provides the energy needed for photosynthesis. Chlorophyll absorbs light energy."]
+        ],
+        question:"Which pigment absorbs light energy for photosynthesis?",
+        options:["Haemoglobin","Chlorophyll","Melanin","Keratin"],
+        answer:1,
+        explanation:"Chlorophyll is the green pigment that absorbs light energy."
+      },
+      {
+        title:"Products of photosynthesis",
+        intro:"Photosynthesis produces substances that support plant life.",
+        lessons:[
+          ["Glucose",
+           "Glucose is produced and can be used in respiration, growth and other processes."],
+          ["Oxygen",
+           "Oxygen is released into the surrounding environment during photosynthesis."],
+          ["The overall equation",
+           "Carbon dioxide + water → glucose + oxygen.",
+           "Light energy is required for this process."]
+        ],
+        question:"Which gas is released during photosynthesis?",
+        options:["Nitrogen","Carbon dioxide","Oxygen","Hydrogen"],
+        answer:2,
+        explanation:"Oxygen is released during photosynthesis."
+      }
+    ]
+  },
+
+  "Physics": {
+    "Forces and Motion": [
+      {
+        title:"Understanding force",
+        intro:"A force is a push or pull that can affect the motion or shape of an object.",
+        lessons:[
+          ["What is force?",
+           "A force is an interaction that can change an object's motion or shape."],
+          ["Direction matters",
+           "Forces act in particular directions. A push to the left and a push to the right act in opposite directions."],
+          ["Measuring force",
+           "The SI unit of force is the newton (N)."]
+        ],
+        question:"What is the SI unit of force?",
+        options:["Joule","Newton","Watt","Pascal"],
+        answer:1,
+        explanation:"Force is measured in newtons (N)."
+      },
+      {
+        title:"Types of forces",
+        intro:"Forces can be grouped according to how objects interact.",
+        lessons:[
+          ["Contact forces",
+           "Contact forces act when objects touch. Examples include friction, tension and normal reaction."],
+          ["Non-contact forces",
+           "Non-contact forces can act without direct physical contact. Examples include gravitational, magnetic and electrostatic forces."],
+          ["Recognising the difference",
+           "Friction requires surfaces to touch, while gravity can act between separated objects."]
+        ],
+        question:"Which of these is a non-contact force?",
+        options:["Friction","Tension","Gravity","Normal reaction"],
+        answer:2,
+        explanation:"Gravity acts between masses without requiring direct contact."
+      },
+      {
+        title:"Balanced and unbalanced forces",
+        intro:"The combined effect of forces determines whether an object's motion changes.",
+        lessons:[
+          ["Balanced forces",
+           "When forces acting on an object are equal in size and opposite in direction, the resultant force is zero."],
+          ["Unbalanced forces",
+           "When the forces do not balance, the resultant force is not zero. The object's motion can change."],
+          ["Resultant force",
+           "The resultant force is the overall force after all the forces acting on an object are combined."]
+        ],
+        question:"What is the resultant force when two equal opposite forces act on an object?",
+        options:["Zero","One newton","Twice either force","The larger force"],
+        answer:0,
+        explanation:"Equal forces in opposite directions cancel, giving a resultant force of zero."
+      }
+    ]
+  }
 };
 
-let selectedTopic="";
-let selectedSubtopic=0;
-let lessonStep=0;
-let practiceIndex=0;
-let guided=false;
-let score=0;
-let diagnosticCorrect=false;
-let answersCorrect=0;
+let currentSubject = "";
+let currentTopic = "";
+let currentSubtopic = null;
+let currentMode = "";
+let lessonIndex = 0;
+let selectedAnswer = null;
+let score = 0;
+let completed = 0;
 
-function home(){
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">WELCOME TO MINDSPRING</p>
-<h2>Let's find the missing piece. 🌱</h2>
-<p>Learning is not about knowing everything already. It's about understanding one step at a time.</p>
-<p>MindSpring helps you explore topics, understand foundations, practise and strengthen your knowledge.</p>
-<button onclick="showTopics()">Start learning</button>
-</div>
-<div class="card">
-<h3>How MindSpring works</h3>
-<p><strong>Discover:</strong> Find out what you already understand.</p>
-<p><strong>Guide:</strong> Learn concepts and break down difficult steps.</p>
-<p><strong>Strengthen:</strong> Practise independently and review your progress.</p>
-</div>`;
+function render(html) {
+  app.innerHTML = html;
+  window.scrollTo({top:0, behavior:"smooth"});
 }
 
-function showTopics(){
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">DISCOVER</p>
-<h2>Choose a learning topic</h2>
-<p>What would you like to explore today?</p>
-${Object.keys(topics).map(t=>`<button class="option" onclick="openTopic('${t}')">${t} →<br><span class="small">${topics[t].description}</span></button>`).join("")}
-<button class="secondary" onclick="home()">Back home</button>
-</div>`;
+function button(label, action, secondary=false) {
+  return `<button class="${secondary ? "secondary" : ""}" onclick="${action}">${label}</button>`;
 }
 
-function openTopic(name){
-selectedTopic=name;
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">YOUR LEARNING JOURNEY</p>
-<h2>${name}</h2>
-<p>${topics[name].description}</p>
-<div class="lesson">
-<strong>Choose how you want to learn</strong>
-<p>Explore any subtopic yourself, or let MindSpring recommend a starting point.</p>
-<button onclick="startGuided()">Guide me</button>
-<button class="secondary" onclick="showSubtopics()">Choose for myself</button>
-</div>
-<button class="secondary" onclick="showTopics()">Back to topics</button>
-</div>`;
+function home() {
+  render(`
+    <section class="card">
+      <h2>Welcome to MindSpring</h2>
+      <p>Learning becomes easier when you understand the foundation behind each concept.</p>
+      <p class="muted">Choose a subject to begin your learning journey.</p>
+      ${button("Explore subjects","showSubjects()")}
+    </section>
+  `);
 }
 
-function showSubtopics(){
-const list=topics[selectedTopic].subtopics;
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">EXPLORE SUBTOPICS</p>
-<h2>${selectedTopic}</h2>
-<p>Choose any part you want to learn. You can explore them in any order.</p>
-${list.map((s,i)=>`<button class="option" onclick="openSubtopic(${i})">${i+1}. ${s.name} →</button>`).join("")}
-<button class="secondary" onclick="openTopic(selectedTopic)">Back</button>
-</div>`;
+function showSubjects() {
+  const subjects = Object.keys(curriculum);
+  render(`
+    <div class="breadcrumb">Home / Subjects</div>
+    <section class="card">
+      <h2>Choose a subject</h2>
+      <p class="muted">What area would you like to explore?</p>
+      ${subjects.map((s,i)=>`
+        <button class="item" onclick="openSubject(${i})">
+          <strong>${s}</strong>
+          <small>Explore topics in ${s}</small>
+        </button>`).join("")}
+      ${button("Back home","home()",true)}
+    </section>
+  `);
 }
 
-function startGuided(){
-guided=true;
-selectedSubtopic=0;
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">GUIDED LEARNING</p>
-<h2>Let's find your starting point.</h2>
-<p>MindSpring will take you through the subtopics in a recommended order, beginning with the foundations.</p>
-<p>You can still choose another subtopic whenever you want.</p>
-<button onclick="openSubtopic(0)">Begin guided learning</button>
-<button class="secondary" onclick="showSubtopics()">Choose a subtopic instead</button>
-</div>`;
+function openSubject(index) {
+  currentSubject = Object.keys(curriculum)[index];
+  const topics = Object.keys(curriculum[currentSubject]);
+  render(`
+    <div class="breadcrumb">Subjects / ${currentSubject}</div>
+    <section class="card">
+      <h2>${currentSubject}</h2>
+      <p class="muted">Choose a topic to explore.</p>
+      ${topics.map((topic,i)=>`
+        <button class="item" onclick="openTopic(${i})">
+          <strong>${topic}</strong>
+          <small>Open topic and explore its learning branches</small>
+        </button>`).join("")}
+      ${button("Back to subjects","showSubjects()",true)}
+    </section>
+  `);
 }
 
-function openSubtopic(index){
-selectedSubtopic=index;
-lessonStep=0;
-practiceIndex=0;
-answersCorrect=0;
-score=0;
-const sub=topics[selectedTopic].subtopics[index];
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">DISCOVER · ${selectedTopic}</p>
-<h2>${sub.name}</h2>
-<p>${sub.intro}</p>
-<p>Let's first check what you already know.</p>
-<h3>${sub.question}</h3>
-${sub.answers.map((a,i)=>`<button class="option" onclick="diagnose(${i})">${a}</button>`).join("")}
-<p class="small">This is a learning check, not an exam.</p>
-</div>`;
+function openTopic(index) {
+  currentTopic = Object.keys(curriculum[currentSubject])[index];
+  const branches = curriculum[currentSubject][currentTopic];
+  render(`
+    <div class="breadcrumb">${currentSubject} / ${currentTopic}</div>
+    <section class="card">
+      <h2>${currentTopic}</h2>
+      <p>Choose how you want to learn.</p>
+      <div class="notice">
+        <strong>Guide me:</strong> Follow the learning branches in order, from the foundation to more advanced ideas.
+      </div>
+      ${button("Guide me","startGuided()")}
+      <div class="notice">
+        <strong>Choose for myself:</strong> Select the exact concept you want to study.
+      </div>
+      ${button("Choose for myself","showSubtopics()")}
+    </section>
+    ${button("Back to topics","openSubject("+Object.keys(curriculum).indexOf(currentSubject)+")",true)}
+  `);
 }
 
-function diagnose(choice){
-const sub=topics[selectedTopic].subtopics[selectedSubtopic];
-diagnosticCorrect=choice===sub.right;
-if(diagnosticCorrect)score=1;
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">GUIDE · ${selectedTopic}</p>
-<h2>${diagnosticCorrect?"Good start!":"Let's build your understanding."}</h2>
-<p>${diagnosticCorrect?"You recognised this idea. Let's deepen your understanding.":"That's okay. This is an opportunity to learn the concept step by step."}</p>
-<div class="lesson">${sub.intro}</div>
-<button onclick="showLesson()">Start the lesson</button>
-<button class="secondary" onclick="showSubtopics()">Choose another subtopic</button>
-</div>`;
+function showSubtopics() {
+  const branches = curriculum[currentSubject][currentTopic];
+  render(`
+    <div class="breadcrumb">${currentSubject} / ${currentTopic} / Subtopics</div>
+    <section class="card">
+      <h2>Choose a subtopic</h2>
+      <p class="muted">Start with any concept you want to understand.</p>
+      ${branches.map((b,i)=>`
+        <button class="item" onclick="beginSubtopic(${i})">
+          <strong>${i+1}. ${b.title}</strong>
+          <small>${b.intro}</small>
+        </button>`).join("")}
+      ${button("Back to learning modes","openTopic("+Object.keys(curriculum[currentSubject]).indexOf(currentTopic)+")",true)}
+    </section>
+  `);
 }
 
-function showLesson(){
-const sub=topics[selectedTopic].subtopics[selectedSubtopic];
-const item=sub.lessons[lessonStep];
-const pct=((lessonStep+1)/sub.lessons.length)*100;
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">LEARN · ${selectedTopic}</p>
-<h2>${sub.name}</h2>
-<div class="progress"><div style="width:${pct}%"></div></div>
-<p class="small">Learning step ${lessonStep+1} of ${sub.lessons.length}</p>
-<div class="step">
-<h3>${item[0]}</h3>
-<p>${item[1]}</p>
-</div>
-${lessonStep===sub.lessons.length-1?`<div class="notice">You've reached the end of this explanation. Let's see what you can do independently.</div>`:""}
-<button onclick="nextLesson()" ${lessonStep===sub.lessons.length-1?"":" "}>${lessonStep===sub.lessons.length-1?"Continue to practice":"Next step"}</button>
-${lessonStep>0?`<button class="secondary" onclick="previousLesson()">Previous</button>`:""}
-<button class="secondary" onclick="showSubtopics()">All subtopics</button>
-</div>`;
+function startGuided() {
+  currentMode = "guided";
+  beginSubtopic(0);
 }
 
-function nextLesson(){
-const sub=topics[selectedTopic].subtopics[selectedSubtopic];
-if(lessonStep<sub.lessons.length-1){
-lessonStep++;
-showLesson();
-}else{
-showPractice();
-}
+function beginSubtopic(index) {
+  currentSubtopic = index;
+  lessonIndex = 0;
+  selectedAnswer = null;
+  showDiagnostic();
 }
 
-function previousLesson(){
-lessonStep--;
-showLesson();
+function getLesson() {
+  return curriculum[currentSubject][currentTopic][currentSubtopic];
 }
 
-function showPractice(){
-const sub=topics[selectedTopic].subtopics[selectedSubtopic];
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">STRENGTHEN · ${selectedTopic}</p>
-<h2>Try it independently.</h2>
-<p>${sub.question}</p>
-${sub.answers.map((a,i)=>`<button class="option" onclick="finish(${i})">${a}</button>`).join("")}
-<p class="small">Take your time. Think about what you have learned.</p>
-</div>`;
+function showDiagnostic() {
+  const data = getLesson();
+  render(`
+    <div class="breadcrumb">${currentSubject} / ${currentTopic} / ${data.title}</div>
+    <section class="card">
+      <h2>Discover what you know</h2>
+      <p>${data.intro}</p>
+      <div class="notice">
+        This question helps you check your starting point. It is okay if you do not know the answer yet.
+      </div>
+      <h3>${data.question}</h3>
+      ${data.options.map((o,i)=>`
+        <button class="choice" id="option${i}" onclick="selectOption(${i})">${o}</button>
+      `).join("")}
+      <div id="diagnosticFeedback"></div>
+      ${button("Check my answer","checkDiagnostic()")}
+      ${button("Back to subtopics","showSubtopics()",true)}
+    </section>
+  `);
 }
 
-function finish(choice){
-const sub=topics[selectedTopic].subtopics[selectedSubtopic];
-const correct=choice===sub.right;
-if(correct)score++;
-document.getElementById("content").innerHTML=`
-<div class="card">
-<p class="tag">YOUR LEARNING SUMMARY</p>
-<h2>${correct?"Well done!":"Keep building your understanding."}</h2>
-<p>${correct?"You answered the practice question correctly.":"Let's review the correct reasoning and strengthen this concept."}</p>
-<div class="lesson">
-<p><strong>Question:</strong> ${sub.question}</p>
-<p><strong>Explanation:</strong> ${sub.explain}</p>
-</div>
-<p><strong>Learning check:</strong> ${diagnosticCorrect?"Correct":"Needs review"}</p>
-<p><strong>Practice:</strong> ${correct?"Correct":"Needs review"}</p>
-<p><strong>Your result:</strong> ${score}/2</p>
-<h3>What would you like to do next?</h3>
-<button onclick="openSubtopic(${selectedSubtopic})">Practise this subtopic again</button>
-<button class="secondary" onclick="showLesson()">Review lesson</button>
-<button class="secondary" onclick="showSubtopics()">Explore other subtopics</button>
-<button class="secondary" onclick="nextRecommended()">Continue learning</button>
-<button class="secondary" onclick="showTopics()">Explore another topic</button>
-<button class="secondary" onclick="home()">Home</button>
-</div>`;
+function selectOption(index) {
+  selectedAnswer = index;
+  document.querySelectorAll(".choice").forEach((el,i)=>{
+    el.classList.toggle("selected",i===index);
+  });
 }
 
-function nextRecommended(){
-const total=topics[selectedTopic].subtopics.length;
-if(selectedSubtopic<total-1){
-openSubtopic(selectedSubtopic+1);
-}else{
-document.getElementById("content").innerHTML=`
-<div class="card">
-<h2>You've explored all the current subtopics!</h2>
-<p>You've completed this learning pathway. You can review any subtopic or explore another topic.</p>
-<button onclick="showSubtopics()">Review subtopics</button>
-<button class="secondary" onclick="showTopics()">Explore another topic</button>
-</div>`;
+function checkDiagnostic() {
+  if(selectedAnswer===null) {
+    alert("Choose an answer first.");
+    return;
+  }
+  const data = getLesson();
+  const correct = selectedAnswer===data.answer;
+  if(correct) score++;
+  document.getElementById("diagnosticFeedback").innerHTML = `
+    <div class="${correct ? "success" : "notice"}">
+      <strong>${correct ? "Good start!" : "That's okay. Let's understand it together."}</strong>
+      <p>${data.explanation}</p>
+    </div>
+    ${button("Start lesson","showLesson()")}
+  `;
+  document.querySelectorAll(".choice").forEach(b=>b.disabled=true);
 }
+
+function showLesson() {
+  const data = getLesson();
+  const step = data.lessons[lessonIndex];
+  const percent = ((lessonIndex+1)/data.lessons.length)*100;
+
+  render(`
+    <div class="breadcrumb">${currentSubject} / ${currentTopic} / ${data.title}</div>
+    <section class="card">
+      <h2>${data.title}</h2>
+      <p class="muted">${data.intro}</p>
+      <div class="progress"><span style="width:${percent}%"></span></div>
+      <p class="muted">Lesson step ${lessonIndex+1} of ${data.lessons.length}</p>
+      <div class="lesson-step">
+        <h3>${step[0]}</h3>
+        ${step.slice(1).map(line=>`<p>${line}</p>`).join("")}
+      </div>
+      ${lessonIndex>0 ? button("Previous step","previousStep()",true) : ""}
+      ${lessonIndex<data.lessons.length-1
+        ? button("Continue","nextStep()")
+        : button("Continue to practice","showPractice()")}
+      ${button("Exit lesson","showSubtopics()",true)}
+    </section>
+  `);
+}
+
+function nextStep() {
+  lessonIndex++;
+  showLesson();
+}
+
+function previousStep() {
+  lessonIndex=Math.max(0,lessonIndex-1);
+  showLesson();
+}
+
+function showPractice() {
+  const data = getLesson();
+  selectedAnswer = null;
+
+  render(`
+    <div class="breadcrumb">${currentSubject} / ${currentTopic} / Practice</div>
+    <section class="card">
+      <h2>Strengthen your understanding</h2>
+      <p>Try this new question without looking back at the lesson.</p>
+      <h3>${getPracticeQuestion(data)}</h3>
+      ${getPracticeOptions(data).map((o,i)=>`
+        <button class="choice" id="option${i}" onclick="selectOption(${i})">${o}</button>
+      `).join("")}
+      <div id="practiceFeedback"></div>
+      ${button("Submit answer","checkPractice()")}
+    </section>
+  `);
+}
+
+function getPracticeQuestion(data) {
+  const practice = {
+    "Variables, constants and coefficients":"In 7y + 3 = 15, what is the constant term on the left?",
+    "Understanding equations":"If 6 + 2 = 8, what is the value of the left side?",
+    "Positive and negative numbers":"What is -5 + 5?",
+    "Inverse operations":"Which operation reverses subtraction of 8?",
+    "One-step equations":"Solve x + 3 = 8.",
+    "Two-step equations":"Solve 2x + 4 = 12.",
+    "What is photosynthesis?":"Which process allows green plants to make glucose using light?",
+    "Requirements for photosynthesis":"Which gas enters the leaf for photosynthesis?",
+    "Products of photosynthesis":"Which two main products are formed during photosynthesis?",
+    "Understanding force":"Which description best defines a force?",
+    "Types of forces":"Which force acts when two surfaces rub against each other?",
+    "Balanced and unbalanced forces":"What is the resultant force when 8 N acts right and 3 N acts left?"
+  };
+  return practice[data.title] || data.question;
+}
+
+function getPracticeOptions(data) {
+  const practice = {
+    "Variables, constants and coefficients":["7","3","15","y"],
+    "Understanding equations":["2","6","8","4"],
+    "Positive and negative numbers":["10","-10","0","5"],
+    "Inverse operations":["Addition by 8","Multiplication by 8","Division by 8","Subtraction by 8"],
+    "One-step equations":["x = 11","x = 5","x = 3","x = 8"],
+    "Two-step equations":["x = 4","x = 6","x = 8","x = 10"],
+    "What is photosynthesis?":["Respiration","Photosynthesis","Transpiration","Digestion"],
+    "Requirements for photosynthesis":["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+    "Products of photosynthesis":["Water and carbon dioxide","Glucose and oxygen","Oxygen and nitrogen","Water and glucose only"],
+    "Understanding force":["A push or pull","A type of energy","The size of an object","The speed of light"],
+    "Types of forces":["Friction","Gravity","Magnetism","Electrostatic force"],
+    "Balanced and unbalanced forces":["2 N right","5 N right","11 N right","5 N left"]
+  };
+  return practice[data.title] || data.options;
+}
+
+function getPracticeAnswer(data) {
+  const answers = {
+    "Variables, constants and coefficients":1,
+    "Understanding equations":2,
+    "Positive and negative numbers":2,
+    "Inverse operations":0,
+    "One-step equations":1,
+    "Two-step equations":0,
+    "What is photosynthesis?":1,
+    "Requirements for photosynthesis":2,
+    "Products of photosynthesis":1,
+    "Understanding force":0,
+    "Types of forces":0,
+    "Balanced and unbalanced forces":1
+  };
+  return answers[data.title] ?? data.answer;
+}
+
+function getPracticeExplanation(data) {
+  const explanations = {
+    "Variables, constants and coefficients":"The constant term on the left is 3; it does not contain a variable.",
+    "Understanding equations":"The left side is 6 + 2, which equals 8.",
+    "Positive and negative numbers":"-5 and +5 are opposites, so their sum is zero.",
+    "Inverse operations":"Addition by 8 reverses subtraction by 8.",
+    "One-step equations":"Subtract 3 from both sides: x = 8 - 3 = 5.",
+    "Two-step equations":"Subtract 4 to get 2x = 8, then divide by 2. x = 4.",
+    "What is photosynthesis?":"Photosynthesis is the process green plants use to make glucose using light energy.",
+    "Requirements for photosynthesis":"Carbon dioxide enters leaves and is used in photosynthesis.",
+    "Products of photosynthesis":"Glucose is produced and oxygen is released.",
+    "Understanding force":"A force is a push or pull that can affect motion or shape.",
+    "Types of forces":"Friction acts between surfaces in contact.",
+    "Balanced and unbalanced forces":"8 N right minus 3 N left gives a resultant force of 5 N right."
+  };
+  return explanations[data.title] || data.explanation;
+}
+
+function checkPractice() {
+  if(selectedAnswer===null) {
+    alert("Choose an answer first.");
+    return;
+  }
+
+  const data = getLesson();
+  const correct = selectedAnswer===getPracticeAnswer(data);
+  if(correct) score++;
+  completed++;
+
+  document.getElementById("practiceFeedback").innerHTML = `
+    <div class="${correct ? "success" : "notice"}">
+      <strong>${correct ? "Well done!" : "Keep learning."}</strong>
+      <p>${getPracticeExplanation(data)}</p>
+    </div>
+    ${button("Finish this subtopic","finishSubtopic()")}
+  `;
+  document.querySelectorAll(".choice").forEach(b=>b.disabled=true);
+}
+
+function finishSubtopic() {
+  const branches = curriculum[currentSubject][currentTopic];
+  const next = currentSubtopic+1;
+  const hasNext = next<branches.length;
+
+  render(`
+    <section class="card">
+      <h2>Subtopic completed</h2>
+      <p>You have finished: <strong>${getLesson().title}</strong></p>
+      <div class="success">
+        Keep building your understanding one concept at a time.
+      </div>
+      ${currentMode==="guided" && hasNext
+        ? button("Continue guided learning","beginSubtopic("+next+")")
+        : ""}
+      ${button("Choose another subtopic","showSubtopics()",true)}
+      ${button("Back to topics","openTopic("+Object.keys(curriculum[currentSubject]).indexOf(currentTopic)+")",true)}
+      ${button("Back to subjects","showSubjects()",true)}
+    </section>
+  `);
 }
 
 home();
