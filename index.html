@@ -1,1 +1,157 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindSpring | From Confusion to Understanding</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7f5;color:#20352e}
+header{background:#123d32;color:white;padding:22px 18px}
+header h1{margin:0;font-size:27px}
+header p{margin:7px 0 0;color:#d3e8df}
+main{max-width:650px;margin:auto;padding:22px 16px}
+.card{background:white;border-radius:16px;padding:21px;margin:15px 0;box-shadow:0 3px 14px #163d3210}
+h2{color:#174c3c}
+p{line-height:1.6}
+button{border:0;border-radius:9px;padding:13px 17px;background:#17634b;color:white;font-size:15px;margin:6px 4px 6px 0;cursor:pointer}
+button.secondary{background:#e6f1ec;color:#174c3c}
+button:disabled{opacity:.5}
+.option{display:block;width:100%;text-align:left;background:#edf4f0;color:#20352e;margin:9px 0}
+.small{font-size:13px;color:#66776e}
+#content{min-height:300px}
+footer{text-align:center;padding:20px;color:#718078;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>MindSpring 🌱</h1>
+<p>From confusion to understanding.</p>
+</header>
+<main>
+<div id="content">
+<div class="card">
+<p class="small">YOUR LEARNING COMPANION</p>
+<h2>Let's find the missing piece.</h2>
+<p>Sometimes, understanding a topic isn't about reading more. It's about discovering the concept you haven't quite understood yet.</p>
+<p>MindSpring helps you explore what you know, understand what is missing and practise independently.</p>
+<button onclick="showTopics()">Start learning</button>
+</div>
+<div class="card">
+<h3>How MindSpring works</h3>
+<p>01 — Discover: Explore what you already know.</p>
+<p>02 — Guide: Work through the difficult concept.</p>
+<p>03 — Strengthen: Practise what you've learnt.</p>
+</div>
+</div>
+</main>
+<footer>MindSpring Prototype · Learning through understanding</footer>
+<script>
+const topics = {
+"Linear Equations": {
+question:"What does x + 3 = 7 mean?",
+options:["A number plus 3 equals 7","A number multiplied by 3 equals 7","3 plus 7 equals x"],
+correct:0,
+explain:"An equation is a mathematical statement showing that two expressions are equal. Here, x is an unknown number. We need to find the number that makes the statement true.",
+practice:"If x + 4 = 9, what is x?",
+answer:["4","5","6"],
+right:1,
+tip:"Subtract 4 from both sides: x = 9 − 4 = 5."
+},
+"Photosynthesis": {
+question:"What do plants mainly use sunlight for?",
+options:["To make their own food","To absorb minerals from soil","To produce soil"],
+correct:0,
+explain:"Photosynthesis is the process by which green plants use light energy to make glucose from carbon dioxide and water. Chlorophyll helps capture the light energy.",
+practice:"Which gas do plants take in during photosynthesis?",
+answer:["Oxygen","Carbon dioxide","Nitrogen"],
+right:1,
+tip:"Plants take in carbon dioxide and use it with water and light to produce glucose and oxygen."
+},
+"Forces and Motion": {
+question:"What is a force?",
+options:["A push or a pull","A type of energy only","The speed of an object"],
+correct:0,
+explain:"A force is a push or pull that can change an object's motion or shape. Forces can make objects start moving, stop, speed up, slow down or change direction.",
+practice:"What happens when balanced forces act on a stationary object?",
+answer:["It must move","It remains stationary","It disappears"],
+right:1,
+tip:"Balanced forces have zero resultant force. A stationary object remains stationary when the forces acting on it are balanced."
+}
+};
+let selected="";
+let score=0;
+
+function showTopics(){
+document.getElementById("content").innerHTML=`
+<div class="card">
+<h2>Choose a learning topic</h2>
+<p>What would you like to explore today?</p>
+${Object.keys(topics).map(t=>`<button class="option" onclick="start('${t}')">${t} →</button>`).join("")}
+<button class="secondary" onclick="home()">Back home</button>
+</div>`;
+}
+function start(topic){
+selected=topic;
+score=0;
+const t=topics[topic];
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="small">DISCOVER · ${topic}</p>
+<h2>Let's see what you already know.</h2>
+<p>${t.question}</p>
+${t.options.map((o,i)=>`<button class="option" onclick="diagnose(${i})">${o}</button>`).join("")}
+<p class="small">This is a learning check, not an exam.</p>
+</div>`;
+}
+function diagnose(choice){
+const t=topics[selected];
+const correct=choice===t.correct;
+score=correct?1:0;
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="small">GUIDE · ${selected}</p>
+<h2>${correct?"Good start!":"Let's explore that idea."}</h2>
+<p>${correct?"You recognised the main idea. Let's strengthen your understanding.":"It's okay if you weren't sure. Let's build the idea together."}</p>
+<p>${t.explain}</p>
+<button onclick="practice()">Continue to practice</button>
+</div>`;
+}
+function practice(){
+const t=topics[selected];
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="small">STRENGTHEN · ${selected}</p>
+<h2>Try it independently.</h2>
+<p>${t.practice}</p>
+${t.answer.map((a,i)=>`<button class="option" onclick="finish(${i})">${a}</button>`).join("")}
+</div>`;
+}
+function finish(choice){
+const t=topics[selected];
+const correct=choice===t.right;
+score+=correct?1:0;
+document.getElementById("content").innerHTML=`
+<div class="card">
+<p class="small">YOUR LEARNING SUMMARY</p>
+<h2>${correct?"Well done!":"Keep building your understanding."}</h2>
+<p>${correct?"You answered the practice question correctly.":"Review the explanation and try another example when you're ready."}</p>
+<p>${t.tip}</p>
+<p><strong>Your result: ${score}/2</strong></p>
+<button onclick="showTopics()">Explore another topic</button>
+<button class="secondary" onclick="home()">Home</button>
+</div>`;
+}
+function home(){
+document.getElementById("content").innerHTML=`
+<div class="card">
+<h2>Welcome back to MindSpring 🌱</h2>
+<p>From confusion to understanding.</p>
+<button onclick="showTopics()">Start learning</button>
+</div>`;
+}
+</script>
+</body>
+</html>
+
